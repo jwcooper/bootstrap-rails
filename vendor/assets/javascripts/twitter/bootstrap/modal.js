@@ -45,7 +45,7 @@
         var that = this
           , e = $.Event('show')
 
-        if ($("div.modal.in").length <= 1) this.$element.trigger(e)
+        this.$element.trigger(e)
 
         if (this.isShown || e.isDefaultPrevented()) return
 
@@ -86,7 +86,7 @@
 
         e = $.Event('hide')
 
-        this.$element.trigger(e)
+        if ($("div.modal.in").length <= 1) this.$element.trigger(e)
 
         if (!this.isShown || e.isDefaultPrevented()) return
 
@@ -109,9 +109,7 @@
         var that = this
         $(document).on('focusin.modal', function (e) {
           if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
-            if ($("div.modal.in").length <= 1) {
-              that.$element.focus()
-              }
+            that.$element.focus()
           }
         })
       }

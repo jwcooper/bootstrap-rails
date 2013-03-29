@@ -70,7 +70,9 @@
             .addClass('in')
             .attr('aria-hidden', false)
 
-          that.enforceFocus()
+          if ($("div.modal.in").length <= 1) {
+            that.enforceFocus()
+          }
 
           transition ?
             that.$element.one($.support.transition.end, function () { that.$element.focus().trigger('shown') }) :
@@ -109,9 +111,7 @@
         var that = this
         $(document).on('focusin.modal', function (e) {
           if (that.$element[0] !== e.target && !that.$element.has(e.target).length) {
-            if ($("div.modal.in").length <= 1) {
-              that.$element.focus()
-            }
+            that.$element.focus()
           }
         })
       }

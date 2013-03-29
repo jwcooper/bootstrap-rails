@@ -45,7 +45,7 @@
         var that = this
           , e = $.Event('show')
 
-        this.$element.trigger(e)
+        if ($("div.modal.in").length <= 1) this.$element.trigger(e)
 
         if (this.isShown || e.isDefaultPrevented()) return
 

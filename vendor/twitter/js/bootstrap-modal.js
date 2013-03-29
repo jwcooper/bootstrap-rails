@@ -45,7 +45,7 @@
         var that = this
           , e = $.Event('show')
 
-        this.$element.trigger(e)
+        if ($("div.modal.in").length <= 1) this.$element.trigger(e)
 
         if (this.isShown || e.isDefaultPrevented()) return
 
@@ -70,9 +70,7 @@
             .addClass('in')
             .attr('aria-hidden', false)
 
-          if ($("div.modal.in").length <= 1) {
-            that.enforceFocus()
-          }
+          that.enforceFocus()
 
           transition ?
             that.$element.one($.support.transition.end, function () { that.$element.focus().trigger('shown') }) :
